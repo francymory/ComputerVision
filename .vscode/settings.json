@@ -1,5 +1,9 @@
 {
   
-  "terminal.integrated.automationProfile.linux": { "path": "/homes/fmorandi/cv_project/bash.sh" }
+  "terminal.integrated.automationProfile.linux": { "path": "/homes/fmorandi/cv_project/bash.sh" },
+  
+  "python.analysis.extraPaths": [
+    "/homes/fmorandi/cv_project/pytorch-CycleGAN-and-pix2pix"
+  ]
 
 }
