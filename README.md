@@ -18,10 +18,9 @@ To train a pretrained pix2pix model (day2night), dentro la directory pytorch-Cyc
 1. bash ./scripts/download_pix2pix_model.sh day2night  (Questo comando scaricherà il modello preaddestrato nella cartella ./checkpoints/day2night_pretrained/ con all'interno il checkpoint del generatore)
 2. Nel file base_model.py, nel metodo load_networks, aggiungi un controllo per verificare se il file del discriminatore esiste. Se non esiste, salta il caricamento di latest_net_D.pth (che nel modello pretrainato non esiste e darebbe errore). il discriminatore verrà inizializzato così con pesi casuali.
 
-
-   def load_networks(self, epoch):
+#code:
+def load_networks(self, epoch):
     """Load all the networks from the disk.
-
     Parameters:
         epoch (int) -- current epoch; used in the file name '%s_net_%s.pth' % (epoch, name)
     """
