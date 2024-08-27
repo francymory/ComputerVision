@@ -49,12 +49,12 @@ def load_networks(self, epoch):
                 self.__patch_instance_norm_state_dict(state_dict, net, key.split('.'))
             net.load_state_dict(state_dict)
 
-3. srun -Q --immediate=10 --partition=all_serial --gres=gpu:1 --account=cvcs2024 --time 120:00 --pty python train.py --dataroot /work/cvcs2024/fiorottandi/workspace/data/dataset/combinedAB --name gta2cityscapes_pretrained --model pix2pix --direction AtoB --epoch_count 1 --n_epochs 25 --n_epochs_decay 25
+3. srun -Q --immediate=10 --partition=all_serial --gres=gpu:1 --account=cvcs2024 --time 120:00 --pty python train.py --dataroot /work/cvcs2024/fiorottandi/workspace/data/dataset/combinedAB --name day2night_pretrained --model pix2pix --direction AtoB --epoch_count 1 --n_epochs 25 --n_epochs_decay 25
 4. Per continuare ad allenare da un checkpoint:
    -Commenta il codice aggiunto prima per ignorare il discriminatore (ora c'è e lo vuoi considerare)
    -crea una nuova directory  (es: ./checkpoints/day2night_pretrained_2)  e copiaci dentro solo latest_net_G.pth e latest_net_D.pth della directory precedente (se il     
     training si è interrotto bruscamente prendi l'ultimo checkpoint valido (es 40_net_G.pth e 40_net_D.pth), copia nella nuova directory e rinomina latest_net_G.pth e 
     latest_net_D.pth
-   -allena come prima tenendo epoch_count 1 e cambiando solo --name directory: srun -Q --immediate=10 --partition=all_serial --gres=gpu:1 --account=cvcs2024 --time 120:00 --pty python train.py --dataroot /work/cvcs2024/fiorottandi/workspace/data/dataset/combinedAB --name gta2cityscapes_pretrained_2 --model pix2pix --direction AtoB --epoch_count 1 --n_epochs 25 --n_epochs_decay 25
+   -allena come prima tenendo epoch_count 1 e cambiando solo --name directory: srun -Q --immediate=10 --partition=all_serial --gres=gpu:1 --account=cvcs2024 --time 120:00 --pty python train.py --dataroot /work/cvcs2024/fiorottandi/workspace/data/dataset/combinedAB --name day2night_pretrained_2 --model pix2pix --direction AtoB --epoch_count 1 --n_epochs 25 --n_epochs_decay 25
 
 
