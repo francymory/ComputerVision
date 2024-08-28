@@ -64,4 +64,15 @@ def load_networks(self, epoch):
     latest_net_D.pth
    3. allena come prima tenendo epoch_count 1 e cambiando solo --name directory: srun -Q --immediate=10 --partition=all_serial --gres=gpu:1 --account=cvcs2024 --time 120:00 --pty python train.py --dataroot /work/cvcs2024/fiorottandi/workspace/data/dinov2_dataset/combinedAB --name day2night_pretrained_2 --model pix2pix --direction AtoB --continue_train --epoch_count 1 --n_epochs 25 --n_epochs_decay 25
 
+5. Per testare il modello(l'ultimo checkpoint):  srun -Q --immediate=10 --partition=all_serial --gres=gpu:1 --account=cvcs2024 --time 120:00 --pty python test_with_metrics.py --dataroot /work/cvcs2024/fiorottandi/workspace/data/dinov2_dataset/combinedAB --name day2night_finetuning --model pix2pix --direction AtoB --num_test 100
+   
+Ricorda che SSIM:
+0.9 - 1.0: Eccellente. Le immagini sono molto simili alla loro controparte originale.
+0.7 - 0.9: Buono. Le immagini sono generalmente simili, ma potrebbero esserci alcune differenze visibili.
+0.5 - 0.7: Medio. Le immagini hanno alcune somiglianze, ma le differenze sono evidenti.
+< 0.5: Scarso. Le immagini sono significativamente diverse.
 
+e PSNR:
+30 - 50 dB: Generalmente accettabile. Le immagini generate sono di buona qualità e visivamente simili alle originali.
+20 - 30 dB: Qualità media. Le immagini potrebbero mostrare artefatti visibili.
+< 20 dB: Bassa qualità. Le immagini hanno probabili artefatti e differenze evidenti.
